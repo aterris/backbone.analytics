@@ -2,7 +2,8 @@
 
  A small object to manage the integration of google analytics into
  a backbone application.  It is meant to be simple and implementation
- agnostic. Depends on [Underscore.js](http://google.com) and Backbone.js.  For more detailed
+ agnostic. Depends on [Underscore.js](http://documentcloud.github.com/underscore/) 
+ and Backbone.js(http://documentcloud.github.com/backbone/).  For more detailed
  documentation see http://aterris.github.com/backbone.analytics/
 
 #### Example
