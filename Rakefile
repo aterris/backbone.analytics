@@ -1,11 +1,25 @@
 require 'rubygems'
 
+desc 'build js files'
+task :build do
+  begin
+    require 'coffee-script'
+  rescue LoadError
+    puts "coffee-script not found.\nInstall it by running 'gem install coffee-script'"
+    exit
+  end
+
+  system 'coffee backbone.analytics.coffee'
+
+  # TODO: create minified version too
+end
+
 desc 'build docs for gh-pages'
 task :build_docs do
   begin
     require 'rocco'
   rescue LoadError
-    puts "rocco not found.\nInstall it by running 'gem install rocco"
+    puts "rocco not found.\nInstall it by running 'gem install rocco'"
     exit
   end
 
