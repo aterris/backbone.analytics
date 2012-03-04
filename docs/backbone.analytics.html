@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>backbone.analytics.coffee</title>
+  <link rel="stylesheet" href="http://jashkenas.github.com/docco/resources/docco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <table cellspacing=0 cellpadding=0>
+  <thead>
+    <tr>
+      <th class=docs><h1>backbone.analytics.coffee</h1></th>
+      <th class=code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id='section-Example'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Example">&#182;</a>
+        </div>
+        <p>A small object to manage the integration of google analytics into
+a backbone application.  It is meant to be simple and implementation
+agnostic. Depends on Underscore.js and Backbone.js</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;script src=&ldquo;/js/underscore.js&rdquo;&gt;&lt;/script&gt;
+&lt;script src=&ldquo;/js/backbone.js&rdquo;&gt;&lt;/script&gt;
+&lt;script src=&ldquo;/js/backbone.analytics.js&rdquo;&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.App = window.App || {};
+  window.App.ga = new Backbone.Analytics({code: &lsquo;UA-12345678-9&rsquo;});
+&lt;/script&gt;
+</code></pre>
+
+<h3>Usage</h3>
+
+<p>This object is meant to be simple and flexible so you can use it however
+works best for your needs and implementation.  I prefer to extend the object
+and use it to write methods that contain my specific analytics integrations.
+However, you can also use it as is.</p>
+
+<h3>Option Defaults</h3>
+
+<ul>
+<li>set_account: true</li>
+<li>initial_pageview: true</li>
+<li>track_navigate: true</li>
+<li>load_script: true</li>
+<li>debug: false</li>
+</ul>
+
+<h3>Syntactic Sugar</h3>
+
+<p>Backbone.Analytics provides a few convience methods that wrap around common
+google analytics objects and interactions including <code>queue</code>, <code>push</code>, 
+<code>set_account</code>, <code>track_pageview</code>, <code>track_event</code>, and <code>set_custom_var</code></p>
+
+<h3>Debug Mode</h3>
+
+<p>Enabling debug mode will include the debug version of the google analytics
+script instead of the standard script.  This will log debug information
+to the console.  Enable debug mode by passing <code>debug: true</code></p>
+
+<h3>Extending Backbone.Analytics</h3>
+
+<p>Extending Backbone.Analytics can help you manage and maintain your domain specific
+analytics interactions in a single location.</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre><span class="k">class</span> <span class="n">window</span><span class="o">.</span><span class="n">Backbone</span><span class="o">.</span><span class="n">Analytics</span>
+  <span class="n">constructor</span><span class="p">:</span> <span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{})</span> <span class="o">-&gt;</span>
+    <span class="vi">@code</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">code</span>
+    <span class="vi">@debug</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">debug</span>
+
+    <span class="vi">@set_account</span><span class="p">()</span> <span class="k">unless</span> <span class="n">options</span><span class="o">.</span><span class="n">set_account</span> <span class="o">==</span> <span class="kp">false</span>
+    <span class="vi">@track_pageview</span><span class="p">()</span> <span class="k">unless</span> <span class="n">options</span><span class="o">.</span><span class="n">initial_pageview</span> <span class="o">==</span> <span class="kp">false</span>
+    <span class="vi">@track_navigate</span><span class="p">()</span> <span class="k">unless</span> <span class="n">options</span><span class="o">.</span><span class="n">track_navigate</span> <span class="o">==</span> <span class="kp">false</span>
+    <span class="vi">@load_script</span><span class="p">()</span> <span class="k">unless</span> <span class="n">options</span><span class="o">.</span><span class="n">load_script</span> <span class="o">==</span> <span class="kp">false</span>
+    
+    <span class="vi">@initialize</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+  </pre></div>
+      </td>
+    </tr>
+    <tr id='section-Initialize_method_to_be_overridden'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Initialize_method_to_be_overridden">&#182;</a>
+        </div>
+        <h4>Initialize method to be overridden</h4>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="kp">initialize</span><span class="p">:</span> <span class="o">=&gt;</span>
+  </pre></div>
+      </td>
+    </tr>
+    <tr id='section-Load_Script'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Load_Script">&#182;</a>
+        </div>
+        <h4>Load Script</h4>
+
+<p>Load the google analytics script via the standard asynchronous pattern</p>
+
+<p>By default creating a new analytics object will automatically load the
+google analytics script via the asynchronous pattern. Passing <code>load_script: false</code>
+will stop this behavior if you already loaded it yourself.</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="n">load_script</span><span class="p">:</span> <span class="o">=&gt;</span>
+    <span class="n">ga</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)</span>
+    <span class="n">ga</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span>
+    <span class="n">ga</span><span class="o">.</span><span class="n">async</span> <span class="o">=</span> <span class="kp">true</span>
+    <span class="n">ga</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="vi">@protocol</span><span class="p">()</span> <span class="o">+</span> <span class="vi">@script</span><span class="p">()</span>
+    
+    <span class="n">s</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">parentNode</span><span class="o">.</span><span class="n">insertBefore</span><span class="p">(</span><span class="n">ga</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+  </pre></div>
+      </td>
+    </tr>
+    <tr id='section-Script_source_protocol'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Script_source_protocol">&#182;</a>
+        </div>
+        <h4>Script source protocol</h4>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="n">protocol</span><span class="p">:</span> <span class="o">=&gt;</span>
+    <span class="k">if</span> <span class="n">document</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">protocol</span> <span class="o">==</span>  <span class="s1">&#39;https:&#39;</span>
+      <span class="s1">&#39;https://ssl&#39;</span>
+    <span class="k">else</span>
+      <span class="s1">&#39;http://www&#39;</span>
+  </pre></div>
+      </td>
+    </tr>
+    <tr id='section-Script_source_url'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Script_source_url">&#182;</a>
+        </div>
+        <h4>Script source url</h4>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="n">script</span><span class="p">:</span> <span class="o">=&gt;</span>
+    <span class="k">if</span> <span class="vi">@debug</span> <span class="o">==</span> <span class="kp">true</span>
+      <span class="s1">&#39;.google-analytics.com/u/ga_debug.js&#39;</span>
+    <span class="k">else</span>
+      <span class="s1">&#39;.google-analytics.com/ga.js&#39;</span>
+  </pre></div>
+      </td>
+    </tr>
+    <tr id='section-Global__gaq_object'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Global__gaq_object">&#182;</a>
+        </div>
+        <h4>Global _gaq object</h4>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="n">queue</span><span class="p">:</span> <span class="o">=&gt;</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">_gaq</span> <span class="o">||=</span> <span class="o">[]</span>
+  </pre></div>
+      </td>
+    </tr>
+    <tr id='section-Push_queue'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Push_queue">&#182;</a>
+        </div>
+        <h4>Push queue</h4>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="n">push</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="vi">@queue</span><span class="p">()</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    </pre></div>
+      </td>
+    </tr>
+    <tr id='section-Set_Account'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Set_Account">&#182;</a>
+        </div>
+        <h4>Set Account</h4>
+
+<p>Trigger setAccount or throw an error if we do not have a tracking code</p>
+
+<p>By default creating a new analytics object will automatically trigger a set
+account event using the <code>code</code> passed to the create method. Passing 
+<code>set_account: false</code> will stop this behavior.</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="n">set_account</span><span class="p">:</span> <span class="o">=&gt;</span>
+    <span class="k">if</span> <span class="n">code?</span>
+      <span class="vi">@push</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;_setAccount&#39;</span><span class="p">,</span> <span class="vi">@code</span><span class="o">]</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="kp">throw</span> <span class="kp">new</span> <span class="no">Error</span><span class="p">(</span><span class="s2">&quot;Cannot Set Google Analytics Account: No Tracking Code Provided&quot;</span><span class="p">)</span>
+  </pre></div>
+      </td>
+    </tr>
+    <tr id='section-Track_Pageview'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Track_Pageview">&#182;</a>
+        </div>
+        <h4>Track Pageview</h4>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="n">track_pageview</span><span class="p">:</span> <span class="p">(</span><span class="n">fragment</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;_trackPageview&#39;</span><span class="o">]</span>
+    <span class="n">command</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">fragment</span><span class="p">)</span> <span class="k">if</span> <span class="n">fragment?</span>
+    <span class="vi">@push</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+  </pre></div>
+      </td>
+    </tr>
+    <tr id='section-Track_Event'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Track_Event">&#182;</a>
+        </div>
+        <h4>Track Event</h4>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="n">track_event</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="vi">@push</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;_trackEvent&#39;</span><span class="o">].</span><span class="n">push</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+  </pre></div>
+      </td>
+    </tr>
+    <tr id='section-Set_Custom_Variable'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Set_Custom_Variable">&#182;</a>
+        </div>
+        <h4>Set Custom Variable</h4>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="n">set_custom_var</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="vi">@push</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;_setCustomVar&#39;</span><span class="o">].</span><span class="n">push</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+  </pre></div>
+      </td>
+    </tr>
+    <tr id='section-Track_Backbone_Navigation'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Track_Backbone_Navigation">&#182;</a>
+        </div>
+        <h4>Track Backbone Navigation</h4>
+
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="n">track_navigate</span><span class="p">:</span> <span class="o">=&gt;</span>
+    <span class="n">track_pageview</span> <span class="o">=</span> <span class="vi">@track_pageview</span>
+    <span class="n">navigate</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Backbone</span><span class="o">.</span><span class="n">History</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">navigate</span>
+    
+    <span class="n">window</span><span class="o">.</span><span class="n">Backbone</span><span class="o">.</span><span class="n">History</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">navigate</span> <span class="o">=</span> <span class="p">(</span><span class="n">fragment</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span>
+      <span class="n">track_pageview</span><span class="p">(</span><span class="n">fragment</span><span class="p">)</span>
+      <span class="n">navigate</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">arguments</span><span class="p">)</span></pre></div>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
