@@ -19,30 +19,30 @@
 # and use it to write methods that contain my specific analytics integrations.
 # However, you can also use it as is.
 #
-#### Options
+#### Option Defaults
 #
-# * options 1
-# * options 2
-# * options 3
-# * options 4
+# * set_account: true
+# * initial_pageview: true
+# * track_navigate: true
+# * load_script: true
+# * debug: false
 #
 #### Syntactic Sugar
 #
 # Backbone.Analytics provides a few convience methods that wrap around common
-# google analytics objects and interactions. These are `queue`, `push`, 
+# google analytics objects and interactions including `queue`, `push`, 
 # `set_account`, `track_pageview`, `track_event`, and `set_custom_var`
 #
 #### Debug Mode
 #
-# pass `debug: true` to the constructor to enable debug mode.
-# This will load the debug version of google analytics `ga_debug.js` which
-# provides console output to help debug issues.
+# Enabling debug mode will include the debug version of the google analytics
+# script instead of the standard script.  This will log debug information
+# to the console.  Enable debug mode by passing `debug: true`
 #
 #### Extending Backbone.Analytics
 #
 # Extending Backbone.Analytics can help you manage and maintain your domain specific
-# analytics interactions in a single location.  I extend the object and create methods
-# on it that I can bind change to.
+# analytics interactions in a single location.
 #
 
 class window.Backbone.Analytics
@@ -51,7 +51,7 @@ class window.Backbone.Analytics
     @debug = options.debug
 
     @set_account() unless options.set_account == false
-    @track_pageview() unless options.trigger_pageview == false
+    @track_pageview() unless options.initial_pageview == false
     @track_navigate() unless options.track_navigate == false
     @load_script() unless options.load_script == false
     

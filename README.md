@@ -2,11 +2,7 @@
 
  A small object to manage the integration of google analytics into
  a backbone application.  It is meant to be simple and implementation
- agnostic.
-
-#### Dependencies
-
- Backbone.js ( requires Underscore.js )
+ agnostic. Depends on Underscore.js and Backbone.js
 
 #### Example
 
@@ -15,7 +11,7 @@
      <script src="/js/backbone.analytics.js"></script>
      <script>
        window.App = window.App || {};
-       window.App.analytics = new Backbone.Analytics({code: 'UA-12345678-9'});
+       window.App.ga = new Backbone.Analytics({code: 'UA-12345678-9'});
      </script>
 
 #### Usage
@@ -25,48 +21,27 @@
  and use it to write methods that contain my specific analytics integrations.
  However, you can also use it as is.
 
-#### Syntax Sugar
+#### Option Defaults
+
+ * set_account: true
+ * initial_pageview: true
+ * track_navigate: true
+ * load_script: true
+ * debug: false
+
+#### Syntactic Sugar
 
  Backbone.Analytics provides a few convience methods that wrap around common
- google analytics objects and interactions. These are `queue`, `push`, 
+ google analytics objects and interactions including `queue`, `push`, 
  `set_account`, `track_pageview`, `track_event`, and `set_custom_var`
-
-#### Setting the Account
-
- By default creating a new analytics object will automatically trigger a set
- account event using the `code` passed to the create method. Passing 
- `set_account: false` will stop this behavior.
-
-#### Script Loading
- 
- By default creating a new analytics object will automatically load the
- google analytics script via the asynchronous pattern. Passing `load_script: false`
- will stop this behavior if you already loaded it yourself.
-
-#### Navigation Tracking
-
- By default all calls to Backbone.history.navigate will be tracked as pageviews.
- Passing `track_navigate: false` will disable this behavior
-
-#### Track Initial Pageview
-
- Depending on your Backbone setup and implementation you may or may not wish
- to fire off an initial page view. By default, it will trigger a plan
- pageview event 
 
 #### Debug Mode
 
- pass `debug: true` to the constructor to enable debug mode.
- This will load the debug version of google analytics `ga_debug.js` which
- provides console output to help debug issues.
+ Enabling debug mode will include the debug version of the google analytics
+ script instead of the standard script.  This will log debug information
+ to the console.  Enable debug mode by passing `debug: true`
 
 #### Extending Backbone.Analytics
 
  Extending Backbone.Analytics can help you manage and maintain your domain specific
- analytics interactions in a single location.  I extend the object to create a home
- for my interactions.  I create methods on this object that I can later bind events
- to.  For example, when a model triggers a change event, I can then have my semantic
- function to bind to.
-
-     @model.on('change:name', App.analytics.edit_model_name)
-
+ analytics interactions in a single location.
