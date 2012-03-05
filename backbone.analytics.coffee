@@ -62,11 +62,12 @@ class window.Backbone.Analytics
     @debug = options.debug
 
     @setAccount() unless options.setAccount == false
+    @loadScript() unless options.loadScript == false
+
+    @initialize.apply(this, arguments)
+
     @trackPageview() unless options.initialPageview == false
     @trackNavigate() unless options.trackNavigate == false
-    @loadScript() unless options.loadScript == false
-    
-    @initialize.apply(this, arguments)
   
   ##### Initialize method to be overridden
   initialize: =>
