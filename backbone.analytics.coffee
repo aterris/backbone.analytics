@@ -1,6 +1,10 @@
+#### Backbone Analytics 0.1
+#
 # A small object to manage the integration of google analytics into
 # a backbone application.  It is meant to be simple and implementation
 # agnostic. Depends on Underscore.js and Backbone.js
+#
+# Created by Andrew Terris [@aterris](http://twitter.com/aterris)
 #
 #### Example
 #
@@ -98,7 +102,7 @@ class window.Backbone.Analytics
   ##### Push queue
   push: (args) =>
     @queue().push(args)
-    
+  
   ##### Set Account
   #
   # Trigger setAccount or throw an error if we do not have a tracking code
@@ -108,7 +112,7 @@ class window.Backbone.Analytics
   # `set_account: false` will stop this behavior.
   #
   set_account: =>
-    if code?
+    if @code?
       @push(['_setAccount', @code])
     else
       throw new Error("Cannot Set Google Analytics Account: No Tracking Code Provided")
@@ -120,12 +124,12 @@ class window.Backbone.Analytics
     @push(command)
   
   ##### Track Event
-  track_event: (args) =>
-    @push(['_trackEvent'].push(args))
+  track_event: (args...) =>
+    @push(['_trackEvent'].concat(args))
   
   ##### Set Custom Variable
-  set_custom_var: (args) =>
-    @push(['_setCustomVar'].push(args))
+  set_custom_var: (args...) =>
+    @push(['_setCustomVar'].concat(args))
   
   ##### Track Backbone Navigation
   track_navigate: =>
