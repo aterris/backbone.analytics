@@ -10,12 +10,12 @@ describe "Backbone.Analytics", ->
     expect(@analytics.script()).toEqual('.google-analytics.com/ga.js')
   
   it 'can use ga_debug.js in debug mode', ->
-    @debug_analytics = new Backbone.Analytics({code: 'UA-XXXXX-X', debug: true, load_script: false})
-    expect(@debug_analytics.script()).toEqual('.google-analytics.com/u/ga_debug.js')
+    @debugAnalytics = new Backbone.Analytics({code: 'UA-XXXXX-X', debug: true, loadScript: false})
+    expect(@debugAnalytics.script()).toEqual('.google-analytics.com/u/ga_debug.js')
   
   it 'can async load the script', ->
-    ga_script = document.getElementsByTagName('script')[0]
-    expect(ga_script.src).toEqual('http://www.google-analytics.com/ga.js')
+    gaScript = document.getElementsByTagName('script')[0]
+    expect(gaScript.src).toEqual('http://www.google-analytics.com/ga.js')
   
   it 'can access _gaq via queue', ->
     expect(@analytics.queue()).toEqual(window._gaq)
@@ -27,31 +27,31 @@ describe "Backbone.Analytics", ->
   
   it 'can set account', ->
     spyOn(@analytics, 'push')
-    @analytics.set_account()
+    @analytics.setAccount()
     expect(@analytics.push).toHaveBeenCalledWith(['_setAccount', 'UA-XXXXX-X'])
   
   it 'raises an error when setting account without providing a tracking code', ->
     @analytics.code = undefined
-    expect( => @analytics.set_account()).toThrow(new Error("Cannot Set Google Analytics Account: No Tracking Code Provided"))
+    expect( => @analytics.setAccount()).toThrow(new Error("Cannot Set Google Analytics Account: No Tracking Code Provided"))
   
   it 'can track a pageview', ->
     spyOn(@analytics, 'push')
-    @analytics.track_pageview()
+    @analytics.trackPageview()
     expect(@analytics.push).toHaveBeenCalledWith(['_trackPageview'])
   
   it 'can track a pageview to a specific fragment', ->
     spyOn(@analytics, 'push')
-    @analytics.track_pageview('/test/fragment')
+    @analytics.trackPageview('/test/fragment')
     expect(@analytics.push).toHaveBeenCalledWith(['_trackPageview', '/test/fragment'])
   
   it 'can track an event', ->
     spyOn(@analytics, 'push')
-    @analytics.track_event('Category', 'Action', 'Label')
+    @analytics.trackEvent('Category', 'Action', 'Label')
     expect(@analytics.push).toHaveBeenCalledWith(['_trackEvent', 'Category', 'Action', 'Label'])
   
   it 'can set a custom var', ->
     spyOn(@analytics, 'push')
-    @analytics.set_custom_var(1, 'Name', 'Value')
+    @analytics.setCustomVar(1, 'Name', 'Value')
     expect(@analytics.push).toHaveBeenCalledWith(['_setCustomVar', 1, 'Name', 'Value'])
   
   it 'can track backbone navigation', ->

@@ -30,17 +30,17 @@
 #
 #### Option Defaults
 #
-# * set_account: true
-# * initial_pageview: true
-# * track_navigate: true
-# * load_script: true
+# * setAccount: true
+# * initialPageview: true
+# * trackNavigate: true
+# * loadScript: true
 # * debug: false
 #
 #### Syntactic Sugar
 #
 # Backbone.Analytics provides a few convience methods that wrap around common
 # google analytics objects and interactions including `queue`, `push`, 
-# `set_account`, `track_pageview`, `track_event`, and `set_custom_var`
+# `setAccount`, `trackPageview`, `trackEvent`, and `setCustomVar`
 #
 #### Debug Mode
 #
@@ -59,10 +59,10 @@ class window.Backbone.Analytics
     @code = options.code
     @debug = options.debug
 
-    @set_account() unless options.set_account == false
-    @track_pageview() unless options.initial_pageview == false
-    @track_navigate() unless options.track_navigate == false
-    @load_script() unless options.load_script == false
+    @setAccount() unless options.setAccount == false
+    @trackPageview() unless options.initialPageview == false
+    @trackNavigate() unless options.trackNavigate == false
+    @loadScript() unless options.loadScript == false
     
     @initialize.apply(this, options)
   
@@ -74,10 +74,10 @@ class window.Backbone.Analytics
   # Load the google analytics script via the standard asynchronous pattern
   # 
   # By default creating a new analytics object will automatically load the
-  # google analytics script via the asynchronous pattern. Passing `load_script: false`
+  # google analytics script via the asynchronous pattern. Passing `loadScript: false`
   # will stop this behavior if you already loaded it yourself.
   # 
-  load_script: =>
+  loadScript: =>
     ga = document.createElement('script')
     ga.type = 'text/javascript'
     ga.async = true
@@ -114,33 +114,33 @@ class window.Backbone.Analytics
   # 
   # By default creating a new analytics object will automatically trigger a set
   # account event using the `code` passed to the create method. Passing 
-  # `set_account: false` will stop this behavior.
+  # `setAccount: false` will stop this behavior.
   #
-  set_account: =>
+  setAccount: =>
     if @code?
       @push(['_setAccount', @code])
     else
       throw new Error("Cannot Set Google Analytics Account: No Tracking Code Provided")
   
   ##### Track Pageview
-  track_pageview: (fragment) =>
+  trackPageview: (fragment) =>
     command = ['_trackPageview']
     command.push(fragment) if fragment?
     @push(command)
   
   ##### Track Event
-  track_event: (args...) =>
+  trackEvent: (args...) =>
     @push(['_trackEvent'].concat(args))
   
   ##### Set Custom Variable
-  set_custom_var: (args...) =>
+  setCustomVar: (args...) =>
     @push(['_setCustomVar'].concat(args))
   
   ##### Track Backbone Navigation
-  track_navigate: =>
-    track_pageview = @track_pageview
+  trackNavigate: =>
+    trackPageview = @trackPageview
     navigate = window.Backbone.History.prototype.navigate
     
     window.Backbone.History.prototype.navigate = (fragment, options) ->
-      track_pageview(fragment)
+      trackPageview(fragment)
       navigate.apply(this, arguments)
