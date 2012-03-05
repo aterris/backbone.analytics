@@ -16,14 +16,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr id='section-Example'>
+    <tr id='section-Backbone_Analytics_0.1'>
       <td class=docs>
         <div class="pilwrap">
-          <a class="pilcrow" href="#section-Example">&#182;</a>
+          <a class="pilcrow" href="#section-Backbone_Analytics_0.1">&#182;</a>
         </div>
-        <p>A small object to manage the integration of google analytics into
+        <h3>Backbone Analytics 0.1</h3>
+
+<p>A small object to manage the integration of google analytics into
 a backbone application.  It is meant to be simple and implementation
 agnostic. Depends on Underscore.js and Backbone.js</p>
+
+<p>Created by Andrew Terris <a href="http://twitter.com/aterris">@aterris</a></p>
 
 <h3>Example</h3>
 
@@ -177,7 +181,7 @@ will stop this behavior if you already loaded it yourself.</p>
       <td class=code>
         <div class='highlight'><pre>  <span class="n">push</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">=&gt;</span>
     <span class="vi">@queue</span><span class="p">()</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    </pre></div>
+  </pre></div>
       </td>
     </tr>
     <tr id='section-Set_Account'>
@@ -195,7 +199,7 @@ account event using the <code>code</code> passed to the create method. Passing
       </td>
       <td class=code>
         <div class='highlight'><pre>  <span class="n">set_account</span><span class="p">:</span> <span class="o">=&gt;</span>
-    <span class="k">if</span> <span class="n">code?</span>
+    <span class="k">if</span> <span class="vi">@code</span><span class="p">?</span>
       <span class="vi">@push</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;_setAccount&#39;</span><span class="p">,</span> <span class="vi">@code</span><span class="o">]</span><span class="p">)</span>
     <span class="k">else</span>
       <span class="kp">throw</span> <span class="kp">new</span> <span class="no">Error</span><span class="p">(</span><span class="s2">&quot;Cannot Set Google Analytics Account: No Tracking Code Provided&quot;</span><span class="p">)</span>
@@ -225,8 +229,8 @@ account event using the <code>code</code> passed to the create method. Passing
         <h4>Track Event</h4>
       </td>
       <td class=code>
-        <div class='highlight'><pre>  <span class="n">track_event</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">=&gt;</span>
-    <span class="vi">@push</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;_trackEvent&#39;</span><span class="o">].</span><span class="n">push</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+        <div class='highlight'><pre>  <span class="n">track_event</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="vi">@push</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;_trackEvent&#39;</span><span class="o">].</span><span class="n">concat</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
   </pre></div>
       </td>
     </tr>
@@ -238,8 +242,8 @@ account event using the <code>code</code> passed to the create method. Passing
         <h4>Set Custom Variable</h4>
       </td>
       <td class=code>
-        <div class='highlight'><pre>  <span class="n">set_custom_var</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">=&gt;</span>
-    <span class="vi">@push</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;_setCustomVar&#39;</span><span class="o">].</span><span class="n">push</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+        <div class='highlight'><pre>  <span class="n">set_custom_var</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="vi">@push</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;_setCustomVar&#39;</span><span class="o">].</span><span class="n">concat</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
   </pre></div>
       </td>
     </tr>
