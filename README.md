@@ -4,7 +4,7 @@
  a backbone application.  It is meant to be simple and implementation
  agnostic. Depends on [Underscore.js](http://documentcloud.github.com/underscore/) 
  and [Backbone.js](http://documentcloud.github.com/backbone/).  For more detailed
- documentation see http://aterris.github.com/backbone.analytics/
+ documentation see [the docs](http://aterris.github.com/backbone.analytics/)
 
 #### Example
 
