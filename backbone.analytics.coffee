@@ -66,7 +66,7 @@ class window.Backbone.Analytics
     @trackNavigate() unless options.trackNavigate == false
     @loadScript() unless options.loadScript == false
     
-    @initialize.apply(this, options)
+    @initialize.apply(this, arguments)
   
   ##### Initialize method to be overridden
   initialize: =>

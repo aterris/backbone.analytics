@@ -30,7 +30,7 @@
       if (options.loadScript !== false) {
         this.loadScript();
       }
-      this.initialize.apply(this, options);
+      this.initialize.apply(this, arguments);
     }
     Analytics.prototype.initialize = function() {};
     Analytics.prototype.loadScript = function() {
