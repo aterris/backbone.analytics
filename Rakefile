@@ -24,7 +24,7 @@ task :build_docs do
     exit
   end
 
-  system 'git checkout gh-pages'
+  system 'git checkout gh-pages && git merge master'
   system 'rocco backbone.analytics.coffee && mv backbone.analytics.html index.html'
   system 'git add index.html && git commit -m "update gh-pages" && git push origin gh-pages'
   system 'git checkout master'
