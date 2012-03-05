@@ -5,35 +5,35 @@
       if (options == null) {
         options = {};
       }
-      this.track_navigate = __bind(this.track_navigate, this);
-      this.set_custom_var = __bind(this.set_custom_var, this);
-      this.track_event = __bind(this.track_event, this);
-      this.track_pageview = __bind(this.track_pageview, this);
-      this.set_account = __bind(this.set_account, this);
+      this.trackNavigate = __bind(this.trackNavigate, this);
+      this.setCustomVar = __bind(this.setCustomVar, this);
+      this.trackEvent = __bind(this.trackEvent, this);
+      this.trackPageview = __bind(this.trackPageview, this);
+      this.setAccount = __bind(this.setAccount, this);
       this.push = __bind(this.push, this);
       this.queue = __bind(this.queue, this);
       this.script = __bind(this.script, this);
       this.protocol = __bind(this.protocol, this);
-      this.load_script = __bind(this.load_script, this);
+      this.loadScript = __bind(this.loadScript, this);
       this.initialize = __bind(this.initialize, this);
       this.code = options.code;
       this.debug = options.debug;
-      if (options.set_account !== false) {
-        this.set_account();
+      if (options.setAccount !== false) {
+        this.setAccount();
       }
-      if (options.initial_pageview !== false) {
-        this.track_pageview();
+      if (options.initialPageview !== false) {
+        this.trackPageview();
       }
-      if (options.track_navigate !== false) {
-        this.track_navigate();
+      if (options.trackNavigate !== false) {
+        this.trackNavigate();
       }
-      if (options.load_script !== false) {
-        this.load_script();
+      if (options.loadScript !== false) {
+        this.loadScript();
       }
       this.initialize.apply(this, options);
     }
     Analytics.prototype.initialize = function() {};
-    Analytics.prototype.load_script = function() {
+    Analytics.prototype.loadScript = function() {
       var ga, s;
       ga = document.createElement('script');
       ga.type = 'text/javascript';
@@ -62,14 +62,14 @@
     Analytics.prototype.push = function(args) {
       return this.queue().push(args);
     };
-    Analytics.prototype.set_account = function() {
+    Analytics.prototype.setAccount = function() {
       if (this.code != null) {
         return this.push(['_setAccount', this.code]);
       } else {
         throw new Error("Cannot Set Google Analytics Account: No Tracking Code Provided");
       }
     };
-    Analytics.prototype.track_pageview = function(fragment) {
+    Analytics.prototype.trackPageview = function(fragment) {
       var command;
       command = ['_trackPageview'];
       if (fragment != null) {
@@ -77,22 +77,22 @@
       }
       return this.push(command);
     };
-    Analytics.prototype.track_event = function() {
+    Analytics.prototype.trackEvent = function() {
       var args;
       args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
       return this.push(['_trackEvent'].concat(args));
     };
-    Analytics.prototype.set_custom_var = function() {
+    Analytics.prototype.setCustomVar = function() {
       var args;
       args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
       return this.push(['_setCustomVar'].concat(args));
     };
-    Analytics.prototype.track_navigate = function() {
-      var navigate, track_pageview;
-      track_pageview = this.track_pageview;
+    Analytics.prototype.trackNavigate = function() {
+      var navigate, trackPageview;
+      trackPageview = this.trackPageview;
       navigate = window.Backbone.History.prototype.navigate;
       return window.Backbone.History.prototype.navigate = function(fragment, options) {
-        track_pageview(fragment);
+        trackPageview(fragment);
         return navigate.apply(this, arguments);
       };
     };
