@@ -6,6 +6,11 @@
 #
 # Created by Andrew Terris [@aterris](http://twitter.com/aterris)
 #
+#### Downloads
+#
+# * [Development](https://raw.github.com/aterris/backbone.analytics/master/backbone.analytics.js)
+# * [Production](https://raw.github.com/aterris/backbone.analytics/master/backbone.analytics.min.js)
+#
 #### Example
 #
 #     <script src="/js/underscore.js"></script>
