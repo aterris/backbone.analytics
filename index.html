@@ -57,10 +57,10 @@ However, you can also use it as is.</p>
 <h3>Option Defaults</h3>
 
 <ul>
-<li>set_account: true</li>
-<li>initial_pageview: true</li>
-<li>track_navigate: true</li>
-<li>load_script: true</li>
+<li>setAccount: true</li>
+<li>initialPageview: true</li>
+<li>trackNavigate: true</li>
+<li>loadScript: true</li>
 <li>debug: false</li>
 </ul>
 
@@ -68,7 +68,7 @@ However, you can also use it as is.</p>
 
 <p>Backbone.Analytics provides a few convience methods that wrap around common
 google analytics objects and interactions including <code>queue</code>, <code>push</code>, 
-<code>set_account</code>, <code>track_pageview</code>, <code>track_event</code>, and <code>set_custom_var</code></p>
+<code>setAccount</code>, <code>trackPageview</code>, <code>trackEvent</code>, and <code>setCustomVar</code></p>
 
 <h3>Debug Mode</h3>
 
@@ -87,10 +87,10 @@ analytics interactions in a single location.</p>
     <span class="vi">@code</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">code</span>
     <span class="vi">@debug</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">debug</span>
 
-    <span class="vi">@set_account</span><span class="p">()</span> <span class="k">unless</span> <span class="n">options</span><span class="o">.</span><span class="n">set_account</span> <span class="o">==</span> <span class="kp">false</span>
-    <span class="vi">@track_pageview</span><span class="p">()</span> <span class="k">unless</span> <span class="n">options</span><span class="o">.</span><span class="n">initial_pageview</span> <span class="o">==</span> <span class="kp">false</span>
-    <span class="vi">@track_navigate</span><span class="p">()</span> <span class="k">unless</span> <span class="n">options</span><span class="o">.</span><span class="n">track_navigate</span> <span class="o">==</span> <span class="kp">false</span>
-    <span class="vi">@load_script</span><span class="p">()</span> <span class="k">unless</span> <span class="n">options</span><span class="o">.</span><span class="n">load_script</span> <span class="o">==</span> <span class="kp">false</span>
+    <span class="vi">@setAccount</span><span class="p">()</span> <span class="k">unless</span> <span class="n">options</span><span class="o">.</span><span class="n">setAccount</span> <span class="o">==</span> <span class="kp">false</span>
+    <span class="vi">@trackPageview</span><span class="p">()</span> <span class="k">unless</span> <span class="n">options</span><span class="o">.</span><span class="n">initialPageview</span> <span class="o">==</span> <span class="kp">false</span>
+    <span class="vi">@trackNavigate</span><span class="p">()</span> <span class="k">unless</span> <span class="n">options</span><span class="o">.</span><span class="n">trackNavigate</span> <span class="o">==</span> <span class="kp">false</span>
+    <span class="vi">@loadScript</span><span class="p">()</span> <span class="k">unless</span> <span class="n">options</span><span class="o">.</span><span class="n">loadScript</span> <span class="o">==</span> <span class="kp">false</span>
     
     <span class="vi">@initialize</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
   </pre></div>
@@ -118,11 +118,11 @@ analytics interactions in a single location.</p>
 <p>Load the google analytics script via the standard asynchronous pattern</p>
 
 <p>By default creating a new analytics object will automatically load the
-google analytics script via the asynchronous pattern. Passing <code>load_script: false</code>
+google analytics script via the asynchronous pattern. Passing <code>loadScript: false</code>
 will stop this behavior if you already loaded it yourself.</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>  <span class="n">load_script</span><span class="p">:</span> <span class="o">=&gt;</span>
+        <div class='highlight'><pre>  <span class="n">loadScript</span><span class="p">:</span> <span class="o">=&gt;</span>
     <span class="n">ga</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)</span>
     <span class="n">ga</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span>
     <span class="n">ga</span><span class="o">.</span><span class="n">async</span> <span class="o">=</span> <span class="kp">true</span>
@@ -202,10 +202,10 @@ will stop this behavior if you already loaded it yourself.</p>
 
 <p>By default creating a new analytics object will automatically trigger a set
 account event using the <code>code</code> passed to the create method. Passing 
-<code>set_account: false</code> will stop this behavior.</p>
+<code>setAccount: false</code> will stop this behavior.</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>  <span class="n">set_account</span><span class="p">:</span> <span class="o">=&gt;</span>
+        <div class='highlight'><pre>  <span class="n">setAccount</span><span class="p">:</span> <span class="o">=&gt;</span>
     <span class="k">if</span> <span class="vi">@code</span><span class="p">?</span>
       <span class="vi">@push</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;_setAccount&#39;</span><span class="p">,</span> <span class="vi">@code</span><span class="o">]</span><span class="p">)</span>
     <span class="k">else</span>
@@ -221,7 +221,7 @@ account event using the <code>code</code> passed to the create method. Passing
         <h4>Track Pageview</h4>
       </td>
       <td class=code>
-        <div class='highlight'><pre>  <span class="n">track_pageview</span><span class="p">:</span> <span class="p">(</span><span class="n">fragment</span><span class="p">)</span> <span class="o">=&gt;</span>
+        <div class='highlight'><pre>  <span class="n">trackPageview</span><span class="p">:</span> <span class="p">(</span><span class="n">fragment</span><span class="p">)</span> <span class="o">=&gt;</span>
     <span class="n">command</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;_trackPageview&#39;</span><span class="o">]</span>
     <span class="n">command</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">fragment</span><span class="p">)</span> <span class="k">if</span> <span class="n">fragment?</span>
     <span class="vi">@push</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
@@ -236,7 +236,7 @@ account event using the <code>code</code> passed to the create method. Passing
         <h4>Track Event</h4>
       </td>
       <td class=code>
-        <div class='highlight'><pre>  <span class="n">track_event</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span> <span class="o">=&gt;</span>
+        <div class='highlight'><pre>  <span class="n">trackEvent</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span> <span class="o">=&gt;</span>
     <span class="vi">@push</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;_trackEvent&#39;</span><span class="o">].</span><span class="n">concat</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
   </pre></div>
       </td>
@@ -249,7 +249,7 @@ account event using the <code>code</code> passed to the create method. Passing
         <h4>Set Custom Variable</h4>
       </td>
       <td class=code>
-        <div class='highlight'><pre>  <span class="n">set_custom_var</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span> <span class="o">=&gt;</span>
+        <div class='highlight'><pre>  <span class="n">setCustomVar</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span> <span class="o">=&gt;</span>
     <span class="vi">@push</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;_setCustomVar&#39;</span><span class="o">].</span><span class="n">concat</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
   </pre></div>
       </td>
@@ -263,12 +263,12 @@ account event using the <code>code</code> passed to the create method. Passing
 
       </td>
       <td class=code>
-        <div class='highlight'><pre>  <span class="n">track_navigate</span><span class="p">:</span> <span class="o">=&gt;</span>
-    <span class="n">track_pageview</span> <span class="o">=</span> <span class="vi">@track_pageview</span>
+        <div class='highlight'><pre>  <span class="n">trackNavigate</span><span class="p">:</span> <span class="o">=&gt;</span>
+    <span class="n">trackPageview</span> <span class="o">=</span> <span class="vi">@trackPageview</span>
     <span class="n">navigate</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Backbone</span><span class="o">.</span><span class="n">History</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">navigate</span>
     
     <span class="n">window</span><span class="o">.</span><span class="n">Backbone</span><span class="o">.</span><span class="n">History</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">navigate</span> <span class="o">=</span> <span class="p">(</span><span class="n">fragment</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span>
-      <span class="n">track_pageview</span><span class="p">(</span><span class="n">fragment</span><span class="p">)</span>
+      <span class="n">trackPageview</span><span class="p">(</span><span class="n">fragment</span><span class="p">)</span>
       <span class="n">navigate</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">arguments</span><span class="p">)</span></pre></div>
       </td>
     </tr>
