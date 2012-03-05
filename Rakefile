@@ -10,6 +10,7 @@ task :build do
   end
 
   system 'coffee backbone.analytics.coffee'
+  system 'coffee spec/backbone.analytics_spec.coffee'
 
   # TODO: create minified version too
 end
