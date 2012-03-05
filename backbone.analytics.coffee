@@ -98,7 +98,7 @@ class window.Backbone.Analytics
   ##### Push queue
   push: (args) =>
     @queue().push(args)
-    
+  
   ##### Set Account
   #
   # Trigger setAccount or throw an error if we do not have a tracking code
@@ -108,7 +108,7 @@ class window.Backbone.Analytics
   # `set_account: false` will stop this behavior.
   #
   set_account: =>
-    if code?
+    if @code?
       @push(['_setAccount', @code])
     else
       throw new Error("Cannot Set Google Analytics Account: No Tracking Code Provided")
@@ -121,11 +121,15 @@ class window.Backbone.Analytics
   
   ##### Track Event
   track_event: (args) =>
-    @push(['_trackEvent'].push(args))
+    command = ['_trackEvent']
+    command.push(args)
+    @push(command)
   
   ##### Set Custom Variable
   set_custom_var: (args) =>
-    @push(['_setCustomVar'].push(args))
+    command = ['_setCustomVar']
+    command.push(args)
+    @push(command)
   
   ##### Track Backbone Navigation
   track_navigate: =>

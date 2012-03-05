@@ -63,7 +63,7 @@
       return this.queue().push(args);
     };
     Analytics.prototype.set_account = function() {
-      if (typeof code !== "undefined" && code !== null) {
+      if (this.code != null) {
         return this.push(['_setAccount', this.code]);
       } else {
         throw new Error("Cannot Set Google Analytics Account: No Tracking Code Provided");
@@ -78,10 +78,16 @@
       return this.push(command);
     };
     Analytics.prototype.track_event = function(args) {
-      return this.push(['_trackEvent'].push(args));
+      var command;
+      command = ['_trackEvent'];
+      command.push(args);
+      return this.push(command);
     };
     Analytics.prototype.set_custom_var = function(args) {
-      return this.push(['_setCustomVar'].push(args));
+      var command;
+      command = ['_setCustomVar'];
+      command.push(args);
+      return this.push(command);
     };
     Analytics.prototype.track_navigate = function() {
       var navigate, track_pageview;
