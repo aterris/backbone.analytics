@@ -21,16 +21,16 @@
       if (options.setAccount !== false) {
         this.setAccount();
       }
+      if (options.loadScript !== false) {
+        this.loadScript();
+      }
+      this.initialize.apply(this, arguments);
       if (options.initialPageview !== false) {
         this.trackPageview();
       }
       if (options.trackNavigate !== false) {
         this.trackNavigate();
       }
-      if (options.loadScript !== false) {
-        this.loadScript();
-      }
-      this.initialize.apply(this, arguments);
     }
     Analytics.prototype.initialize = function() {};
     Analytics.prototype.loadScript = function() {
