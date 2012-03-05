@@ -25,17 +25,17 @@
 
 #### Option Defaults
 
- * set_account: true
- * initial_pageview: true
- * track_navigate: true
- * load_script: true
+ * setAccount: true
+ * initialPageview: true
+ * trackNavigate: true
+ * loadScript: true
  * debug: false
 
 #### Syntactic Sugar
 
  Backbone.Analytics provides a few convience methods that wrap around common
  google analytics objects and interactions including `queue`, `push`, 
- `set_account`, `track_pageview`, `track_event`, and `set_custom_var`
+ `setAccount`, `trackPageview`, `trackEvent`, and `setCustomVar`
 
 #### Debug Mode
 
