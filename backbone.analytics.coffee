@@ -2,6 +2,8 @@
 # a backbone application.  It is meant to be simple and implementation
 # agnostic. Depends on Underscore.js and Backbone.js
 #
+# Created by Andrew Terris [@aterris](http://twitter.com/aterris)
+#
 #### Example
 #
 #     <script src="/js/underscore.js"></script>
@@ -120,16 +122,12 @@ class window.Backbone.Analytics
     @push(command)
   
   ##### Track Event
-  track_event: (args) =>
-    command = ['_trackEvent']
-    command.push(args)
-    @push(command)
+  track_event: (args...) =>
+    @push(['_trackEvent'].concat(args))
   
   ##### Set Custom Variable
-  set_custom_var: (args) =>
-    command = ['_setCustomVar']
-    command.push(args)
-    @push(command)
+  set_custom_var: (args...) =>
+    @push(['_setCustomVar'].concat(args))
   
   ##### Track Backbone Navigation
   track_navigate: =>

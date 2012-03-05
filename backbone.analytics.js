@@ -1,5 +1,5 @@
 (function() {
-  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __slice = Array.prototype.slice;
   window.Backbone.Analytics = (function() {
     function Analytics(options) {
       if (options == null) {
@@ -77,17 +77,15 @@
       }
       return this.push(command);
     };
-    Analytics.prototype.track_event = function(args) {
-      var command;
-      command = ['_trackEvent'];
-      command.push(args);
-      return this.push(command);
+    Analytics.prototype.track_event = function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      return this.push(['_trackEvent'].concat(args));
     };
-    Analytics.prototype.set_custom_var = function(args) {
-      var command;
-      command = ['_setCustomVar'];
-      command.push(args);
-      return this.push(command);
+    Analytics.prototype.set_custom_var = function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      return this.push(['_setCustomVar'].concat(args));
     };
     Analytics.prototype.track_navigate = function() {
       var navigate, track_pageview;

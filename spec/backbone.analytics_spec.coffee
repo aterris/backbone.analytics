@@ -46,13 +46,13 @@ describe "Backbone.Analytics", ->
   
   it 'can track an event', ->
     spyOn(@analytics, 'push')
-    @analytics.track_event('test')
-    expect(@analytics.push).toHaveBeenCalledWith(['_trackEvent', 'test'])
+    @analytics.track_event('Category', 'Action', 'Label')
+    expect(@analytics.push).toHaveBeenCalledWith(['_trackEvent', 'Category', 'Action', 'Label'])
   
   it 'can set a custom var', ->
     spyOn(@analytics, 'push')
-    @analytics.set_custom_var('test')
-    expect(@analytics.push).toHaveBeenCalledWith(['_setCustomVar', 'test'])
+    @analytics.set_custom_var(1, 'Name', 'Value')
+    expect(@analytics.push).toHaveBeenCalledWith(['_setCustomVar', 1, 'Name', 'Value'])
   
   it 'can track backbone navigation', ->
     spyOn(@analytics, 'push')

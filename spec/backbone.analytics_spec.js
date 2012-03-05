@@ -56,13 +56,13 @@
     });
     it('can track an event', function() {
       spyOn(this.analytics, 'push');
-      this.analytics.track_event('test');
-      return expect(this.analytics.push).toHaveBeenCalledWith(['_trackEvent', 'test']);
+      this.analytics.track_event('Category', 'Action', 'Label');
+      return expect(this.analytics.push).toHaveBeenCalledWith(['_trackEvent', 'Category', 'Action', 'Label']);
     });
     it('can set a custom var', function() {
       spyOn(this.analytics, 'push');
-      this.analytics.set_custom_var('test');
-      return expect(this.analytics.push).toHaveBeenCalledWith(['_setCustomVar', 'test']);
+      this.analytics.set_custom_var(1, 'Name', 'Value');
+      return expect(this.analytics.push).toHaveBeenCalledWith(['_setCustomVar', 1, 'Name', 'Value']);
     });
     return it('can track backbone navigation', function() {
       spyOn(this.analytics, 'push');
