@@ -6,6 +6,8 @@
 #
 # Created by Andrew Terris [@aterris](http://twitter.com/aterris)
 #
+# Hosted on [github](https://github.com/aterris/backbone.analytics)
+#
 #### Downloads
 #
 # * [Development](https://raw.github.com/aterris/backbone.analytics/master/backbone.analytics.js)
