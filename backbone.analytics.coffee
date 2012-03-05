@@ -1,3 +1,5 @@
+#### Backbone Analytics 0.1
+#
 # A small object to manage the integration of google analytics into
 # a backbone application.  It is meant to be simple and implementation
 # agnostic. Depends on Underscore.js and Backbone.js
