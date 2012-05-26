@@ -136,7 +136,7 @@ class window.Backbone.Analytics
     @push(['_trackEvent'].concat(args))
   
   ##### Track Social
-  track_social: (args...) =>
+  trackSocial: (args...) =>
     @push(['_trackSocial'].concat(args))
   
   ##### Set Custom Variable
