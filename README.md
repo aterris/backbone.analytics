@@ -35,7 +35,7 @@
 
  Backbone.Analytics provides a few convience methods that wrap around common
  google analytics objects and interactions including `queue`, `push`, 
- `setAccount`, `trackPageview`, `trackEvent`, and `setCustomVar`
+ `setAccount`, `trackPageview`, `trackEvent`, `trackSocial`, and `setCustomVar`
 
 #### Debug Mode
 
