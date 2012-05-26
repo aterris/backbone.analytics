@@ -16,12 +16,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr id='section-Backbone_Analytics_0.1'>
+    <tr id='section-Backbone_Analytics_0.2'>
       <td class=docs>
         <div class="pilwrap">
-          <a class="pilcrow" href="#section-Backbone_Analytics_0.1">&#182;</a>
+          <a class="pilcrow" href="#section-Backbone_Analytics_0.2">&#182;</a>
         </div>
-        <h3>Backbone Analytics 0.1</h3>
+        <h3>Backbone Analytics 0.2</h3>
 
 <p>A small object to manage the integration of google analytics into
 a backbone application.  It is meant to be simple and implementation
@@ -241,6 +241,19 @@ account event using the <code>code</code> passed to the create method. Passing
       <td class=code>
         <div class='highlight'><pre>  <span class="n">trackEvent</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span> <span class="o">=&gt;</span>
     <span class="vi">@push</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;_trackEvent&#39;</span><span class="o">].</span><span class="n">concat</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+  </pre></div>
+      </td>
+    </tr>
+    <tr id='section-Track_Social'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Track_Social">&#182;</a>
+        </div>
+        <h4>Track Social</h4>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="n">trackSocial</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="vi">@push</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;_trackSocial&#39;</span><span class="o">].</span><span class="n">concat</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
   </pre></div>
       </td>
     </tr>
