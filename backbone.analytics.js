@@ -7,6 +7,7 @@
       }
       this.trackNavigate = __bind(this.trackNavigate, this);
       this.setCustomVar = __bind(this.setCustomVar, this);
+      this.trackSocial = __bind(this.trackSocial, this);
       this.trackEvent = __bind(this.trackEvent, this);
       this.trackPageview = __bind(this.trackPageview, this);
       this.setAccount = __bind(this.setAccount, this);
@@ -81,6 +82,11 @@
       var args;
       args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
       return this.push(['_trackEvent'].concat(args));
+    };
+    Analytics.prototype.trackSocial = function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      return this.push(['_trackSocial'].concat(args));
     };
     Analytics.prototype.setCustomVar = function() {
       var args;

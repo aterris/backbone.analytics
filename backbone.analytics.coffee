@@ -1,4 +1,4 @@
-#### Backbone Analytics 0.1
+#### Backbone Analytics 0.2
 #
 # A small object to manage the integration of google analytics into
 # a backbone application.  It is meant to be simple and implementation
@@ -134,6 +134,10 @@ class window.Backbone.Analytics
   ##### Track Event
   trackEvent: (args...) =>
     @push(['_trackEvent'].concat(args))
+  
+  ##### Track Social
+  trackSocial: (args...) =>
+    @push(['_trackSocial'].concat(args))
   
   ##### Set Custom Variable
   setCustomVar: (args...) =>
